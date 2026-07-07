@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日科技要闻速览 · 2026.07.07</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --gold: #c8a882;
+    --gold-light: #d4b896;
+    --gold-dark: #b8956e;
+    --text: #2c2c2c;
+    --text-secondary: #6b6b6b;
+    --card-bg: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --card-shadow-hover: 0 8px 30px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    --border: #e8e4df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 4px 16px;
+    margin-bottom: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .header h1 {
+    font-family: Georgia, "Noto Serif SC", "Source Han Serif SC", serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .header .date {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* Card List */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    cursor: pointer;
+  }
+
+  /* Left gold line - hidden by default */
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    bottom: 12px;
+    width: 3px;
+    background: var(--gold);
+    border-radius: 0 2px 2px 0;
+    opacity: 0;
+    transform: scaleY(0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+  }
+
+  .card:hover {
+    border-color: var(--gold-light);
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .card:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+  }
+
+  .card-index {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .card-title {
+    font-family: Georgia, "Noto Serif SC", "Source Han Serif SC", serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.5;
+    transition: color 0.25s ease;
+  }
+
+  .card:hover .card-title {
+    color: var(--gold-dark);
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Serif SC", sans-serif;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #aaa;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-tech { background: #f0ebe3; color: #a08060; }
+  .tag-economy { background: #e8efe8; color: #5a8a5a; }
+  .tag-policy { background: #e6e9f0; color: #5a6a8a; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 36px 0 0;
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #bbb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .container { padding: 20px 14px 36px; }
+    .header { padding: 28px 0 20px; margin-bottom: 24px; }
+    .header h1 { font-size: 22px; }
+    .card { padding: 16px 16px; }
+    .card-title { font-size: 16px; }
+    .card-desc { font-size: 13px; }
+    .card-list { gap: 12px; }
+  }
+
+  @media (max-width: 360px) {
+    .container { padding: 16px 10px 28px; }
+    .header h1 { font-size: 20px; }
+    .card { padding: 14px 14px; }
+    .card-title { font-size: 15px; }
+    .card-desc { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="header-tag">DAILY BRIEFING</div>
+    <h1>今日科技要闻速览</h1>
+    <p class="date">2026 年 7 月 7 日 · 星期二</p>
+  </header>
+
+  <div class="card-list">
+
+    <!-- Card 1 -->
+    <a href="https://new.qq.com/rain/a/20260706A07AIH00" target="_blank" rel="noopener" class="card-link">
+      <div class="card">
+        <div class="card-index">NO. 01</div>
+        <div class="card-title">腾讯混元 Hy3 正式上线，Agent 能力追平 GPT-5.5</div>
+        <div class="card-desc">
+          腾讯发布混元 Hy3 正式版，MoE 架构 295B 参数，Agent 任务解决率从 72% 跃升至 90%，平均耗时缩短 34%。以较小尺寸比肩国内外大尺寸旗舰模型，Apache 2.0 开源协议，输入仅 1 元/百万 tokens。
+        </div>
+        <div class="card-meta">
+          <span class="card-tag tag-tech">科 技</span>
+          <span>腾讯网 · 7月6日</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="https://new.qq.com/rain/a/20260702A08FHE00" target="_blank" rel="noopener" class="card-link">
+      <div class="card">
+        <div class="card-index">NO. 02</div>
+        <div class="card-title">宇树科技科创板 IPO 注册生效，A 股「人形机器人第一股」诞生</div>
+        <div class="card-desc">
+          宇树科技仅用 104 天完成 IPO 审核创科创板最快纪录。拟募资 42 亿元，估值约 420 亿元。2025 年人形机器人出货超 5500 台全球第一，是国内少有的已盈利具身智能企业。
+        </div>
+        <div class="card-meta">
+          <span class="card-tag tag-tech">科 技</span>
+          <span class="card-tag tag-economy">经 济</span>
+          <span>科创板日报 · 7月2日</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="https://finance.people.com.cn/n1/2026/0704/c1004-40753238.html" target="_blank" rel="noopener" class="card-link">
+      <div class="card">
+        <div class="card-index">NO. 03</div>
+        <div class="card-title">《循环经济发展「十五五」规划》印发，产业产值锚定 8 万亿</div>
+        <div class="card-desc">
+          规划明确到 2030 年资源循环利用产业产值达 8 万亿元，大宗固废年利用量 45 亿吨。首次将「新三样」固废、算力设施等新基建废弃物纳入循环利用体系，并建立动力电池「数字身份证」制度。
+        </div>
+        <div class="card-meta">
+          <span class="card-tag tag-policy">政 策</span>
+          <span>人民网 · 7月4日</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="https://www.eeo.com.cn/2026/0707/945842.shtml" target="_blank" rel="noopener" class="card-link">
+      <div class="card">
+        <div class="card-index">NO. 04</div>
+        <div class="card-title">8000 亿「两重」建设项目清单全部下达，覆盖 1417 个重大项目</div>
+        <div class="card-desc">
+          今年超长期特别国债「两重」建设资金全部下达完毕，分三批共 8000 亿元支持 1417 个项目，覆盖科技创新、长江生态保护、城市地下管网、西部陆海新通道、高等教育提质等八大核心领域。
+        </div>
+        <div class="card-meta">
+          <span class="card-tag tag-economy">经 济</span>
+          <span class="card-tag tag-policy">政 策</span>
+          <span>经济观察网 · 7月7日</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="https://www.163.com/dy/article/L102M1GH0514CQIE.html" target="_blank" rel="noopener" class="card-link">
+      <div class="card">
+        <div class="card-index">NO. 05</div>
+        <div class="card-title">央行万亿逆回购释放宽松信号，A 股交易新规同日实施</div>
+        <div class="card-desc">
+          央行 7 月 6 日开展 1 万亿元买断式逆回购操作，净投放 2000 亿元，终结连续四个月缩量，释放明确宽松信号。同日沪深北交易所修订后交易新规正式实施，主板风险警示股涨跌幅提高至 10%。
+        </div>
+        <div class="card-meta">
+          <span class="card-tag tag-economy">经 济</span>
+          <span>证券日报 · 7月7日</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <footer class="footer">
+    数据来源：腾讯网 · 科创板日报 · 人民网 · 经济观察网 · 证券日报
+  </footer>
+
+</div>
+</body>
+</html>
